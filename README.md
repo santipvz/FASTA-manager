@@ -22,22 +22,22 @@ In this case, the file contains two sequences with identifiers 'S1' and 'S2', an
 
 # Some usage commands
 Change file name or format
->python fasta_format.py --input=test_1.fasta --output=test1.fasta --case=lower --maxLength=2
+<pre><code>python fasta_format.py --input=test_1.fasta --output=test1.fasta --case=lower --maxLength=2</pre></code>
 
 Rename chains with the same ID
->python disambiguate.py --input=test_3.fasta --output=test2.fasta --mode=rename
+<pre><code>python disambiguate.py --input=test_3.fasta --output=test2.fasta --mode=rename</pre></code>
 
 Delete chains with the same ID
->python disambiguate.py --input=test_3.fasta --output=test2_1.fasta --mode=remove
+<pre><code>python disambiguate.py --input=test_3.fasta --output=test2_1.fasta --mode=remove</pre></code>
 
 Get a reversed and complemented chain
->python reverse_complement.py --input=test_3.fasta --output=test3.fasta --mode=both
+<pre><code>python reverse_complement.py --input=test_3.fasta --output=test3.fasta --mode=both</pre></code>
 
 Get the complementary chain of a given one
->python reverse_complement.py --input=test_4.fasta --output=test4.fasta --mode=complement 
+<pre><code>python reverse_complement.py --input=test_4.fasta --output=test4.fasta --mode=complement</pre></code> 
 
 Get the reversed chain of a given one
->python reverse_complement.py --input=test_4.fasta --output=test4.fasta --mode=reverse
+<pre><code>python reverse_complement.py --input=test_4.fasta --output=test4.fasta --mode=reverse</pre></code>
 
 Get data from a file in csv format (Amount of A,C,T,G...) with the option to show plots of this data (--extra-plots-dir is an optional argument)
->python fasta_summary.py --input=INPUT --output=CSV_OUTPUT --extra-plots-dir=GRAPHS_OUTPUT
+<pre><code>python fasta_summary.py --input=INPUT --output=CSV_OUTPUT --extra-plots-dir=GRAPHS_OUTPUT</pre></code>
