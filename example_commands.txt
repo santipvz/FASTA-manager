@@ -1,0 +1,6 @@
+python fasta_format.py --input=test_1.fasta --output=test1.fasta --case=lower --maxLength=2
+python disambiguate.py --input=test_3.fasta --output=test2.fasta --mode=rename
+python disambiguate.py --input=test_3.fasta --output=test2_1.fasta --mode=remove
+python reverse_complement.py --input=test_3.fasta --output=test3.fasta --mode=both
+python reverse_complement.py --input=test_4.fasta --output=test4.fasta --mode=complement 
+python fasta_summary.py --input=INPUT --output=CSV_OUTPUT --extra-plots-dir=GRAPHS_OUTPUT
