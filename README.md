@@ -2,6 +2,7 @@
 
 The objective of this project is the creation of an application for managing files in FASTA format, a text format used in bioinformatics to represent DNA or protein sequences. A FASTA file stores information for one or more sequences. Each sequence is composed of a header line beginning with the ">" character and one or more lines containing text with the corresponding DNA or protein sequence. The header provides the sequence identifier. Let's look at an example of content in FASTA format:
 
+## Examples
  \> S1
  
  ACTG
