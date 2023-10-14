@@ -1,12 +1,13 @@
-
+"""This module contains the Sequence class."""
 ## Definition of the Sequence class
 class Sequence:
-    def __init__(self, id, seq):
-        self.id = id
+    """This class represents a sequence."""
+    def __init__(self, seq_id, seq):
+        self.id = seq_id
         self.seq = seq
 
     def __repr__(self):
-        return '{}: {}'.format(self.id, self.seq)
+        return f'{self.id}: {self.seq}'
 
     def __str__(self):
-        return '{}: {}\n'.format(self.id, self.seq)
+        return f'{self.id}: {self.seq}\n'
