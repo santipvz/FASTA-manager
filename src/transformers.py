@@ -15,9 +15,11 @@ class AbstractTransformer(ABC):
         """Returns a list of Sequence objects with the reverse transformation applied."""
 
 
-class DuplicatedIdentifiersRemover(AbstractTransformer):
+class DuplicatedIdentifiersRemover():
     """Removes duplicated identifiers from a list of Sequence objects."""
+
     def transform(self, sequence):
+        """Returns a list of Sequence objects without duplicates."""
         new_seq_list = []
         id_dict = {}
         for seq in sequence:
@@ -26,6 +28,17 @@ class DuplicatedIdentifiersRemover(AbstractTransformer):
                 id_dict[seq_id] = seq
         new_seq_list = list(id_dict.values())
         return new_seq_list
+
+    def count_duplicates(self, sequence):
+        """Count the number of duplicate sequences in the input list."""
+        id_counts = {}
+        for seq in sequence:
+            seq_id = seq.id
+            id_counts[seq_id] = id_counts.get(seq_id, 0) + 1
+
+        duplicate_count = sum(count - 1 for count in id_counts.values() if count > 1)
+        return duplicate_count
+
 
 
 class DuplicatedIdentifiersRenamer(AbstractTransformer):
