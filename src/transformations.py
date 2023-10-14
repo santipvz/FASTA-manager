@@ -30,8 +30,6 @@ def duplicate_manager(sequence, mode='original'):
                     id_dict[seq_id] = seq
             else:
                 return sequence
-        else:
-            id_dict[seq_id] = seq
     new_seq_list = list(id_dict.values())
     return new_seq_list if new_seq_list else None
 
@@ -43,7 +41,7 @@ def reverse_complement(sequence, style='original'):
             toret.append(Sequence(seq.id, seq.seq[::-1]))
         return toret
 
-    elif style == 'complement':
+    if style == 'complement':
         complements = {
                         'A': 'T', 'C': 'G', 'G': 'C','T': 'A',
                         'a': 't', 'c': 'g', 'g': 'c', 't': 'a'
@@ -53,7 +51,7 @@ def reverse_complement(sequence, style='original'):
             toret.append(Sequence(seq.id, ''.join(complements[base] for base in seq.seq)))
         return toret
 
-    elif style == 'both':
+    if style == 'both':
         complements = {
                         'A': 'T', 'C': 'G', 'G': 'C', 'T': 'A',
                         'a': 't', 'c': 'g', 'g': 'c', 't': 'a'
@@ -64,9 +62,8 @@ def reverse_complement(sequence, style='original'):
             toret.append(Sequence(seq.id, combined_seq))
         return toret
 
-    else:
-        toret = list(sequence)
-        return toret if toret else None
+    toret = list(sequence)
+    return toret if toret else None
 
 
 if __name__ == '__main__':
