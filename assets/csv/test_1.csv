@@ -1,4 +1,9 @@
-id,len,A,C,T,G,-
-S1,8,1,1,1,1,0
-S2,8,1,1,1,1,0
-S3,8,1,0,0,3,0
+>S1
+actgACTG
+
+>S2
+ctgaCTGA
+
+>S3
+gggaGGGA
+

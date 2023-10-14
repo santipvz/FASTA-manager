@@ -1,8 +1,7 @@
-# pylint: disable=duplicate-code
-"""This module contains the Sequence class."""
+'''This module contains the Sequence class.'''
 ## Definition of the Sequence class
 class Sequence:
-    """This class represents a sequence."""
+    '''This class represents a sequence.'''
     def __init__(self, seq_id, seq):
         self.id = seq_id
         self.seq = seq
