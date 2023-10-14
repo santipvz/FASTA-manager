@@ -1,3 +1,4 @@
+# pylint: disable=duplicate-code
 """This module contains the class SeqFileManager, which allows us to format sequences 
 and load and write fasta files."""
 from enum import Enum

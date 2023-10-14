@@ -1,3 +1,4 @@
+# pylint: disable=duplicate-code
 """ This script takes a fasta file or a directory containing fasta files and
     generates a csv file with the statistics of the sequences in the fasta file
     or in the fasta files in the directory. It also generates a histogram and a

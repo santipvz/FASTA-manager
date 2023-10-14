@@ -1,3 +1,4 @@
+# pylint: disable=duplicate-code
 """Disambiguate duplicated identifiers in a FASTA file."""
 from script_utils import sys, args, arguments, apply_transformation, error_mode
 from transformers import DuplicatedIdentifiersRemover, DuplicatedIdentifiersRenamer

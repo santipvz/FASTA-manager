@@ -1,3 +1,4 @@
+# pylint: disable=duplicate-code
 """This module contains the functions that are used by the scripts"""
 
 from fasta import SeqFileManager, error_generic, error_length

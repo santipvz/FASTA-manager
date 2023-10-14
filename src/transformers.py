@@ -1,3 +1,4 @@
+# pylint: disable=duplicate-code
 """This module contains the classes that implement the transformations 
 that can be applied to a list of sequences."""
 from abc import ABC, abstractmethod

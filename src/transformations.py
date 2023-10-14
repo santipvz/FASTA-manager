@@ -1,3 +1,4 @@
+# pylint: disable=duplicate-code
 """This module contains functions for transforming sequences."""
 from sequences import Sequence
 from fasta import SeqFileManager

@@ -1,3 +1,4 @@
+# pylint: disable=duplicate-code
 """Module to compute statistics for a list of sequences"""
 import csv
 from sequences import Sequence

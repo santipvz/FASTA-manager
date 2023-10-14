@@ -1,3 +1,4 @@
+# pylint: disable=duplicate-code
 """This module contains the functions that are used by the scripts 
 to apply the transformations to the sequences."""
 import sys

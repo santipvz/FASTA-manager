@@ -1,3 +1,4 @@
+# pylint: disable=duplicate-code
 """This module is used to parse the arguments passed to the program."""
 
 def parse_args(args):

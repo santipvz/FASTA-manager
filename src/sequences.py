@@ -1,3 +1,4 @@
+# pylint: disable=duplicate-code
 """This module contains the Sequence class."""
 ## Definition of the Sequence class
 class Sequence:
