@@ -5,7 +5,7 @@ from transformers import ReverseComplement
 
 
 mode = args['mode']
-if mode == 'reverse' or mode == 'complement' or mode == 'both':
+if mode in ('reverse', 'complement', 'both'):
     transformed_sequences = ReverseComplement(style=mode).transform
 else:
     args.pop('mode')

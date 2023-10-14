@@ -33,7 +33,7 @@ def duplicate_manager(sequence, mode='original'):
         else:
             id_dict[seq_id] = seq
     new_seq_list = list(id_dict.values())
-    return new_seq_list
+    return new_seq_list if new_seq_list else None
 
 def reverse_complement(sequence, style='original'):
     """Returns a list of Sequence objects with the reverse complement of the sequences."""
@@ -64,9 +64,9 @@ def reverse_complement(sequence, style='original'):
             toret.append(Sequence(seq.id, combined_seq))
         return toret
 
-    elif style == 'original':
-        toret = [i for i in sequence]
-        return toret
+    else:
+        toret = list(sequence)
+        return toret if toret else None
 
 
 if __name__ == '__main__':

@@ -96,6 +96,7 @@ class SequenceListTransformer:
             transformed_list = transformation.transform(transformed_list)
         return transformed_list
 
+
 if __name__ == '__main__':
     sequences = [
             Sequence('S1', 'TGAC'), Sequence('S1', 'GTCA'),
