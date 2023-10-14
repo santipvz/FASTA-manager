@@ -75,7 +75,7 @@ if __name__ == '__main__':
             Sequence('S4', 'TCCC'), Sequence('S4', 'GGGA')
         ]
 
-    load = SeqFileManager().load_fasta('test_3.fasta')
+    load = SeqFileManager().load_fasta('assets/test_3.fasta')
 
     d = duplicate_manager(load, mode='rename')
     print(d)

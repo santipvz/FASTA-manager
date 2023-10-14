@@ -47,7 +47,7 @@ if __name__ == '__main__':
     stats_matrix = SequenceStats().get_seq_stats_matrix(sequences)
 
     # Write statistics array to CSV file
-    SequenceStats().stats_to_csv(stats_matrix, 'fichero.csv')
+    SequenceStats().stats_to_csv(stats_matrix, 'file_test.csv')
 
     # Print the statistics matrix
     for row in stats_matrix:
