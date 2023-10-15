@@ -170,7 +170,8 @@ def main():
                         action='store_true',
                         help='Rename duplicates')
 
-    parser.add_argument('--reverse', action='store_true',
+    parser.add_argument('--reverse',
+                        action='store_true',
                         help='Reverse sequences')
 
     parser.add_argument('--complement',
@@ -205,7 +206,7 @@ def main():
             '(--dremove, --drename, --reverse, --complement, --rc, --stats or --extra-plots-dir).')
         return
 
-    sequence_manager = SeqFileManager(args.casefile, args.maxlength)
+    sequence_manager = SeqFileManager(SeqFileManager.parse_case(args.casefile), args.maxlength)
 
     # Check if --input is a directory
     if os.path.isdir(args.input):  # If the input path is a directory
@@ -240,7 +241,6 @@ def main():
         load = sequence_manager.load_fasta(args.input)
         sequences = process_sequences(load, args)
 
-
         if args.extra_plots_dir is not None:
             output_file_path = os.path.join(args.output, 'output.csv')
             write_output(sequence_manager, sequences, output_file_path)
@@ -249,8 +249,7 @@ def main():
         if args.stats:
             # Compute statistics and save to a CSV file
             stats_matrix = SequenceStats().get_seq_stats_matrix(sequences)
-            stats_filename = 'stats.csv'
-            stats_filepath = os.path.join(args.output, stats_filename)
+            stats_filepath = os.path.join(args.output, args.input + '_stats.csv')
             SequenceStats().stats_to_csv(stats_matrix, stats_filepath)
 
 def process_sequences(sequences, args):
@@ -274,7 +273,7 @@ def process_sequences(sequences, args):
         # Reverse complement sequences
         sequences = ReverseComplement(style='both').transform(sequences)
 
-
+    SeqFileManager(SeqFileManager.parse_case(args.casefile), args.maxlength).write_fasta(sequences, args.output)
     return sequences
 
 def write_output(sequence_manager, sequences, output_file_path):
