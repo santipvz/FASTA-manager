@@ -9,6 +9,32 @@ from packages.transformers.duplicated_transformer import DuplicatedTransformer
 from packages.transformers.reverse_complement import ReverseComplement
 from packages.stats.sequence_stats import SequenceStats
 
+def apply_case_transformation(args, sequences):
+    '''Applies a case transformation to the sequences'''
+    if args.casefile == 'upper':
+        return [Sequence(seq.id, seq.seq.upper(), seq.file_name) for seq in sequences]
+    if args.casefile == 'lower':
+        return [Sequence(seq.id, seq.seq.lower(), seq.file_name) for seq in sequences]
+    return sequences
+
+def apply_duplicate_transformation(args, sequences):
+    '''Applies a duplicate transformation to the sequences'''
+    if args.dremove:
+        return DuplicatedTransformer(style='remove').transform(sequences)
+    if args.drename:
+        return DuplicatedTransformer(style='rename').transform(sequences)
+    return sequences
+
+def apply_sequence_transformation(args, sequences):
+    '''Applies a sequence transformation to the sequences'''
+    if args.reverse:
+        return ReverseComplement(style='reverse').transform(sequences)
+    if args.complement:
+        return ReverseComplement(style='complement').transform(sequences)
+    if args.rc:
+        return ReverseComplement(style='both').transform(sequences)
+    return sequences
+
 def main():
     '''Main function'''
     parser = argparse.ArgumentParser(description='FASTA file processing tool')
@@ -28,44 +54,26 @@ def main():
     fasta_files = [file for file in os.listdir(current_directory) if file.endswith('.fasta')]
 
     # Verify that there are FASTA files in the current directory
-    if not any([args.casefile, args.dremove, args.drename, args.reverse, args.complement, args.rc, args.stats, args.plots]):
+    if not any([args.casefile, args.dremove, args.drename, args.reverse,
+                args.complement, args.rc, args.stats, args.plots]):
         print('No transformation specified')
         return
 
     if not fasta_files:
         print('No FASTA files found in the current directory')
         return
-    
+
     stats_directory = os.path.join(current_directory, 'result_stats')
 
     for filename in fasta_files:
-        seq_file_manager = SeqFileManager(case=args.casefile, input_filename=filename)
+        seq_file_manager = SeqFileManager(input_filename=filename)
         sequences = seq_file_manager.load_fasta(filename)
 
-        # Apply case transformation if specified
-        if args.casefile == 'upper':
-            sequences = [Sequence(seq.id, seq.seq.upper(), seq.file_name) for seq in sequences]
-        elif args.casefile == 'lower':
-            sequences = [Sequence(seq.id, seq.seq.lower(), seq.file_name) for seq in sequences]
+        sequences = apply_case_transformation(args, sequences)
 
-        if args.dremove:
-            # Remove duplicates
-            sequences = DuplicatedTransformer(style='remove').transform(sequences)
-        elif args.drename:
-            # Rename duplicates
-            sequences = DuplicatedTransformer(style='rename').transform(sequences)
+        sequences = apply_duplicate_transformation(args, sequences)
 
-        if args.reverse:
-            # Reverse sequences
-            sequences = ReverseComplement(style='reverse').transform(sequences)
-
-        elif args.complement:
-            # Complement sequences
-            sequences = ReverseComplement(style='complement').transform(sequences)
-
-        elif args.rc:
-            # Reverse complement sequences
-            sequences = ReverseComplement(style='both').transform(sequences)
+        sequences = apply_sequence_transformation(args, sequences)
 
         if args.plots:
             plot_generator = PlotGenerator(sequences, filename, 'result_plots')
@@ -74,6 +82,7 @@ def main():
         if args.stats:
             sequence_stats = SequenceStats()
             sequence_stats.generate_stats(sequences, stats_directory, filename)
+
 
         # Process the sequences if any transformation was specified
         if any([args.casefile, args.dremove, args.drename, args.reverse, args.complement, args.rc]):

@@ -4,8 +4,7 @@ from packages.sequences.sequences import Sequence
 
 class SeqFileManager:
     '''This class allows us to format sequences and load and write fasta files.'''
-    def __init__(self, case=0, input_filename=None):
-        self.case = case
+    def __init__(self, input_filename=None):
         self.input_filename = input_filename
 
 

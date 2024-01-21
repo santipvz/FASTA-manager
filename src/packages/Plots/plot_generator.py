@@ -65,7 +65,7 @@ class PlotGenerator:
         plt.xlabel('Bases')
         plt.ylabel('Percentage')
         plt.title('Relative percentage of bases in the total length of sequences')
-        
+
         plt.grid(True)
         input_file_name = os.path.splitext(os.path.basename(self.input_path))[0]
         boxplot_filename = input_file_name + '_boxplot.png'
