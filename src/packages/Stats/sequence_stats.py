@@ -36,10 +36,10 @@ class SequenceStats:
             writer = csv.writer(csvfile)
             writer.writerows(matrix)
 
-    def generate_stats(sequences, stats_directory, filename):
+    def generate_stats(self, sequences, stats_directory, filename):
         '''Generates statistics for a list of sequences'''
         os.makedirs(stats_directory, exist_ok=True)
-        stats_matrix = SequenceStats().get_seq_stats_matrix(sequences)
+        stats_matrix = self.get_seq_stats_matrix(sequences)
         stats_filename = os.path.splitext(filename)[0] + '_stats.csv'
         stats_filepath = os.path.join(stats_directory, stats_filename)
-        SequenceStats().stats_to_csv(stats_matrix, stats_filepath)
+        self.stats_to_csv(stats_matrix, stats_filepath)

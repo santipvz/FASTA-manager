@@ -1,13 +1,13 @@
-# src/main.py
+'''Main module for the FASTA file processing tool'''
 import argparse
 import os
 
-from packages.Utils.seq_file_manager import SeqFileManager
-from packages.Plots.plot_generator import PlotGenerator
-from packages.Sequences.sequences import Sequence
-from packages.Transformers.duplicated_transformer import DuplicatedTransformer
-from packages.Transformers.reverse_complement import ReverseComplement
-from packages.Stats.sequence_stats import SequenceStats
+from packages.utils.seq_file_manager import SeqFileManager
+from packages.plots.plot_generator import PlotGenerator
+from packages.sequences.sequences import Sequence
+from packages.transformers.duplicated_transformer import DuplicatedTransformer
+from packages.transformers.reverse_complement import ReverseComplement
+from packages.stats.sequence_stats import SequenceStats
 
 def main():
     '''Main function'''
@@ -23,25 +23,29 @@ def main():
     parser.add_argument('--plots', help='Generate plots', action='store_true')
     args = parser.parse_args()
 
-    # Verificar si se proporcionó al menos una opción de reformateado
-    if not any([args.casefile, args.maxlength, args.dremove, args.drename, args.reverse, args.complement, args.rc]):
-        print("No se especificó ningún tipo de reformateado. No se crearán carpetas de resultados.")
 
-    # Obtener la lista de archivos .fasta en el directorio actual
+    # Get the FASTA files in the current directory
     current_directory = os.getcwd()
     fasta_files = [file for file in os.listdir(current_directory) if file.endswith('.fasta')]
 
-    # Verificar si hay archivos .fasta en el directorio
-    if not fasta_files:
-        print("No se encontraron archivos .fasta en el directorio actual.")
+    # Verify that there are FASTA files in the current directory
+    if not any([args.casefile, args.maxlength, args.dremove, args.drename, args.reverse, args.complement, args.rc, args.stats, args.plots]):
+        print('No transformation specified')
         return
 
-    stats_directory = os.path.join(current_directory, 'stats')
+    if not fasta_files:
+        print('No FASTA files found in the current directory')
+        return
+    
+
+    
+    stats_directory = os.path.join(current_directory, 'result_stats')
 
     for filename in fasta_files:
         seq_file_manager = SeqFileManager(case=args.casefile, max_length=args.maxlength, input_filename=filename)
         sequences = seq_file_manager.load_fasta(filename)
 
+        # Apply case transformation if specified
         if args.casefile == 'upper':
             sequences = [Sequence(seq.id, seq.seq.upper(), seq.file_name) for seq in sequences]
         elif args.casefile == 'lower':
@@ -66,18 +70,20 @@ def main():
             # Reverse complement sequences
             sequences = ReverseComplement(style='both').transform(sequences)
 
-        # Aplicar la longitud máxima a cada línea si se especifica args.maxlength
+        # Apply max length if specified
         sequences = [seq.max_length(args.maxlength) if args.maxlength else seq for seq in sequences]
 
         if args.plots:
-            PlotGenerator.generate_plots(sequences, filename, 'plots')
+            plot_generator = PlotGenerator(sequences, filename, 'result_plots')
+            plot_generator.generate_plots()
 
         if args.stats:
-            SequenceStats.generate_stats(sequences, stats_directory, filename)
+            sequence_stats = SequenceStats()
+            sequence_stats.generate_stats(sequences, stats_directory, filename)
 
-        # Ahora escribimos las secuencias procesadas solo si se especificó algún tipo de reformateado
+        # Process the sequences if any transformation was specified
         if any([args.casefile, args.maxlength, args.dremove, args.drename, args.reverse, args.complement, args.rc]):
-            output_directory = os.path.join(current_directory, 'results')
+            output_directory = os.path.join(current_directory, 'result_formatted')
             seq_file_manager.write_fasta(sequences, output_directory)
 
 if __name__ == '__main__':

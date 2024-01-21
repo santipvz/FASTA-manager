@@ -1,6 +1,6 @@
 '''Module for loading and writing fasta files.'''
 import os
-from packages.Sequences.sequences import Sequence
+from packages.sequences.sequences import Sequence
 
 class SeqFileManager:
     '''This class allows us to format sequences and load and write fasta files.'''

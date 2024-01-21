@@ -1,5 +1,6 @@
 '''Returns a list of Sequence objects with the reverse complement of the sequences.'''
-from packages.Sequences.sequences import Sequence
+# pylint: disable=too-few-public-methods
+from packages.sequences.sequences import Sequence
 from .abstract_transformer import AbstractTransformer
 
 class ReverseComplement(AbstractTransformer):

@@ -1,4 +1,5 @@
 '''Returns a list of Sequence objects with the specified transformation.'''
+# pylint: disable=too-few-public-methods
 from .abstract_transformer import AbstractTransformer
 
 class DuplicatedTransformer(AbstractTransformer):
