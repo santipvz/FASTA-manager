@@ -3,6 +3,13 @@
 The FASTA Manager is a versatile command-line tool designed to assist in the management and analysis of DNA or protein sequences stored in FASTA format. This tool provides functionalities for formatting, transforming, and generating statistics or plots from sequence data.
 
 
+<p align="center">
+   <img src="https://github.com/santipvz/FASTA-manager/actions/workflows/pylint.yml/badge.svg/" alt="Tests">
+   <img src="https://img.shields.io/badge/Version-1.1-blue/" alt="Static Badge">
+   
+</p>
+
+
 # Installation
 You can install this program using pip with: **<pre><code>pip install fasta-manager</pre></code>**
 # Command Line Arguments
