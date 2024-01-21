@@ -20,8 +20,6 @@ You can install this program using pip with: **<pre><code>pip install fasta-mana
 
 --`casefile`: Case transformation (original, upper, lower).
 
---`maxlength`: Maximum line length (0 for no limit).
-
 --`plots`: Generate plots.
 
 # Examples
@@ -31,11 +29,11 @@ Example 1: Remove duplicates and generate statistics
 Example 2: Reverse complement sequences and generate plots
 <pre><code>fasta --rc --plots</pre></code>
 
-Example 3: Perform case transformation and limit line length
-<pre><code>fasta --casefile upper --maxlength 80</pre></code>
+Example 3: Perform case transformation
+<pre><code>fasta --casefile upper</pre></code>
 
 You can also combine parameters where order doesn't matter.
-<pre><code>fasta --stats --plots --casefile lower --drename --maxlength 10</pre></code>
+<pre><code>fasta --stats --plots --casefile lower --drename</pre></code>
 
 # Results
 The processed sequences will be stored in the `results` directory, and statistics (if computed) will be saved in the `stats` directory. Plots (if generated) will be saved in the `plots` directory

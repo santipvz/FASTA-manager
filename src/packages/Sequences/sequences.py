@@ -21,10 +21,3 @@ class Sequence:
     def upper(self):
         '''Returns a new Sequence object with the sequence in uppercase.'''
         return Sequence(self.id, self.seq.upper(), self.file_name)
-
-    def max_length(self, max_length):
-        '''Returns a new Sequence object with the sequence truncated to max_length.'''
-        if max_length < 0:
-            raise ValueError('max_length must be a positive integer')
-
-        return Sequence(self.id, self.seq[:max_length], self.file_name)

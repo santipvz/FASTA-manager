@@ -19,7 +19,6 @@ def main():
     parser.add_argument('--rc', action='store_true', help='Reverse complement sequences')
     parser.add_argument('--stats', help='Compute stats', action='store_true')
     parser.add_argument('--casefile', help='Case transformation (original, upper, lower)')
-    parser.add_argument('--maxlength', type=int, default=0, help='Maximum line length (0 for no limit)')
     parser.add_argument('--plots', help='Generate plots', action='store_true')
     args = parser.parse_args()
 
@@ -29,7 +28,7 @@ def main():
     fasta_files = [file for file in os.listdir(current_directory) if file.endswith('.fasta')]
 
     # Verify that there are FASTA files in the current directory
-    if not any([args.casefile, args.maxlength, args.dremove, args.drename, args.reverse, args.complement, args.rc, args.stats, args.plots]):
+    if not any([args.casefile, args.dremove, args.drename, args.reverse, args.complement, args.rc, args.stats, args.plots]):
         print('No transformation specified')
         return
 
@@ -37,12 +36,10 @@ def main():
         print('No FASTA files found in the current directory')
         return
     
-
-    
     stats_directory = os.path.join(current_directory, 'result_stats')
 
     for filename in fasta_files:
-        seq_file_manager = SeqFileManager(case=args.casefile, max_length=args.maxlength, input_filename=filename)
+        seq_file_manager = SeqFileManager(case=args.casefile, input_filename=filename)
         sequences = seq_file_manager.load_fasta(filename)
 
         # Apply case transformation if specified
@@ -70,9 +67,6 @@ def main():
             # Reverse complement sequences
             sequences = ReverseComplement(style='both').transform(sequences)
 
-        # Apply max length if specified
-        sequences = [seq.max_length(args.maxlength) if args.maxlength else seq for seq in sequences]
-
         if args.plots:
             plot_generator = PlotGenerator(sequences, filename, 'result_plots')
             plot_generator.generate_plots()
@@ -82,7 +76,7 @@ def main():
             sequence_stats.generate_stats(sequences, stats_directory, filename)
 
         # Process the sequences if any transformation was specified
-        if any([args.casefile, args.maxlength, args.dremove, args.drename, args.reverse, args.complement, args.rc]):
+        if any([args.casefile, args.dremove, args.drename, args.reverse, args.complement, args.rc]):
             output_directory = os.path.join(current_directory, 'result_formatted')
             seq_file_manager.write_fasta(sequences, output_directory)
 
