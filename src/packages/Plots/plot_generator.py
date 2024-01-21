@@ -38,6 +38,7 @@ class PlotGenerator:
         plt.xlabel('Sequence length')
         plt.ylabel('Frequency')
         plt.title('Histogram of sequence length distribution')
+        plt.grid(True)
         input_file_name = os.path.splitext(os.path.basename(self.input_path))[0]
         histogram_filename = input_file_name + '_histogram.png'
         histogram_filepath = os.path.join(self.plots_dir, histogram_filename)
@@ -55,6 +56,8 @@ class PlotGenerator:
         box_colors = ['#FFC0CB', '#ADD8E6', '#90EE90', '#FFFF66']
         plt.boxplot(self.df[base_counts].values, labels=base_counts, patch_artist=True)
 
+        plt.xticks([])
+
         for patch, color in zip(plt.boxplot(self.df[base_counts].values,patch_artist=True)['boxes'],
                                 box_colors):
             patch.set_facecolor(color)
@@ -62,6 +65,7 @@ class PlotGenerator:
         plt.xlabel('Bases')
         plt.ylabel('Percentage')
         plt.title('Relative percentage of bases in the total length of sequences')
+        
         plt.grid(True)
         input_file_name = os.path.splitext(os.path.basename(self.input_path))[0]
         boxplot_filename = input_file_name + '_boxplot.png'

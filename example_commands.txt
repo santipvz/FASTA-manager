@@ -1,5 +1,0 @@
-python fasta.py --input INPUT --output OUTPUT [--dremove] [--drename] 
-                                              [--reverse] [--complement] 
-                                              [--rc] [--stats] [--casefile CASEFILE]
-                                              [--maxlength MAXLENGTH] 
-                                              [--extra-plots-dir EXTRA_PLOTS_DIR]
