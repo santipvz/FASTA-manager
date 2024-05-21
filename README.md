@@ -5,7 +5,7 @@ The FASTA Manager is a versatile command-line tool designed to assist in the man
 
 <p align="center">
    <img src="https://github.com/santipvz/FASTA-manager/actions/workflows/pylint.yml/badge.svg/" alt="Tests">
-   <img src="https://img.shields.io/badge/Version-1.2-blue/" alt="Static Badge">
+   <img src="https://img.shields.io/badge/Version-1.3.2-blue/" alt="Static Badge">
    
 </p>
 
