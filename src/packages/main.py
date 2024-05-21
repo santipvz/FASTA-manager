@@ -38,14 +38,14 @@ def apply_sequence_transformation(args, sequences):
 def main():
     '''Main function'''
     parser = argparse.ArgumentParser(description='FASTA file processing tool')
-    parser.add_argument('--dremove',    action='store_true', help='Remove duplicates')
-    parser.add_argument('--drename',    action='store_true', help='Rename duplicates')
-    parser.add_argument('--reverse',    action='store_true', help='Reverse sequences')
+    parser.add_argument('--dremove', action='store_true', help='Remove duplicates')
+    parser.add_argument('--drename', action='store_true', help='Rename duplicates')
+    parser.add_argument('--reverse', action='store_true', help='Reverse sequences')
     parser.add_argument('--complement', action='store_true', help='Complement sequences')
-    parser.add_argument('--rc',         action='store_true', help='Reverse complement sequences')
-    parser.add_argument('--stats',      action='store_true', help='Compute stats')
-    parser.add_argument('--casefile',                        help='Case transformation (original, upper, lower)')
-    parser.add_argument('--plots',      action='store_true', help='Generate plots')
+    parser.add_argument('--rc', action='store_true', help='Reverse complement sequences')
+    parser.add_argument('--stats', action='store_true', help='Compute stats')
+    parser.add_argument('--casefile', help='Case transformation (original, upper, lower)')
+    parser.add_argument('--plots', action='store_true', help='Generate plots')
     args = parser.parse_args()
 
 
@@ -65,7 +65,7 @@ def main():
 
     stats_directory = os.path.join(current_directory, 'result_stats')
 
-    
+
     for filename in fasta_files:
         seq_file_manager = SeqFileManager(input_filename=filename)
         sequences = seq_file_manager.load_fasta(filename)
