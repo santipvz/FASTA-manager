@@ -27,6 +27,7 @@ class SeqFileManager:
             if current_id is not None:
                 # Provide the file_name parameter when creating Sequence objects
                 sequences.append(Sequence(current_id, current_seq, file_name))
+
         return sequences
 
     # En la clase SeqFileManager en packages/Utils/seq_file_manager.py

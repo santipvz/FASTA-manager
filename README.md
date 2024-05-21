@@ -43,7 +43,7 @@ You can also combine parameters where order doesn't matter.
 <pre><code>fasta --stats --plots --casefile lower --drename</pre></code>
 
 # Results
-The processed sequences will be stored in the `results` directory, and statistics (if computed) will be saved in the `stats` directory. Plots (if generated) will be saved in the `plots` directory
+The processed sequences will be stored in the `results` directory, and statistics will be saved in the `stats` directory. Plots will be saved in the `plots` directory
 
 # Input File Format
 The input files are expected to follow the format:
